@@ -20,7 +20,7 @@
         "docker",
         "packagist"
       ],
-      "groupName": "ITZBund Major Update",
+      "groupName": "Major Update",
       "matchUpdateTypes": [
         "major"
       ],
