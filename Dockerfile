@@ -1,4 +1,4 @@
-FROM ghcr.io/renovatebot/renovate:40.0.0@sha256:8ec35bb52d6cd45ddd4f793de5406b2e1396cec14b33f7a8e9f238c220556f23
+FROM ghcr.io/renovatebot/renovate:41.173.1@sha256:e998e1218fe572e23278d8808186a310784f7cb2ac8055307183ffc51d3a59e5
 
 # renovate: datasource=github-releases depName=helm/helm
 ENV HELM_VERSION="v3.19.1"
