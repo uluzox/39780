@@ -10,7 +10,7 @@ fails with
 
 > cannot combine both matchUpdateTypes and separateMultipleMajor
 
-```json
+```json5
 {
   "matchManagers": [
     "dockerfile",
@@ -34,37 +34,45 @@ fails with
 On the other hand, removing `separateMultipleMajor` from the above package rule
 leads to a merge request for each renovated package's major version.
 
+```json5
+{
+  "matchManagers": [
+    "dockerfile",
+    "composer"
+  ],
+  "matchDatasources": [
+    "docker",
+    "packagist"
+  ],
+  "groupName": "ITZBund Major Update",
+  "matchUpdateTypes": [
+    "major"
+  ],
+  // "separateMultipleMajor": false,
+  "semanticCommits": "enabled",
+  "semanticCommitType": "feat!",
+  "semanticCommitScope": null
+}
+```
+
+Resulting Merge Requests
+
+- [Update Major Update to v3 (major)](https://github.com/uluzox/39780/pull/12)
+- [Update ghcr.io/renovatebot/renovate Docker tag to v42](https://github.com/uluzox/39780/pull/11)
+- [Update ghcr.io/renovatebot/renovate Docker tag to v41](https://github.com/uluzox/39780/pull/10)
+- [Update dependency derhansen/form_crshield to v2](https://github.com/uluzox/39780/pull/9)
+- [Update ghcr.io/renovatebot/renovate Docker tag to v40.62.1](https://github.com/uluzox/39780/pull/4)
+- [Update dependency derhansen/form_crshield to v1.4.1](https://github.com/uluzox/39780/pull/3)
+- [Update dependency b13/container to v2.3.6](https://github.com/uluzox/39780/pull/2)
+
+Only `v3` major versions are combined. The desired `Update Major Update (major)`
+would include
+- b13/container (source)	2.2.5 -> 3.1.11
+- derhansen/form_crshield	1.3.1 -> 3.0.0
+- ghcr.io/renovatebot/renovate (source)	final	major	40.0.0 -> 42.37.1
+
 ## Expected behavior
 
-### Commit hash pinning disabled
+No config validation error as it works: 
 
-If commit hash pinning is disabled, then Renovate keeps the original comment.
-
-
-```yaml
-jobs:
-  build:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v1 # Renovate keeps comment if commit hash pinning disabled
-
-      - name: Run a one-line script
-        run: echo Hello, world!
-```
-
-### Commit hash pinning enabled
-
-If commit hash pinning is enabled, then Renovate puts the tag right behind the action name, and moves the original comment further down the line.
-
-```yaml
-jobs:
-  build:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v1e204e9a9253d643386038d443f96446fa156a97 # renovate: tag=v2.3.5 # Comment that Renovate bot has moved
-
-      - name: Run a one-line script
-        run: echo Hello, world!
-```
+> cannot combine both matchUpdateTypes and separateMultipleMajor
