@@ -24,7 +24,7 @@
       "matchUpdateTypes": [
         "major"
       ],
-      // "separateMultipleMajor": false,
+      "separateMultipleMajor": false,
       "semanticCommits": "enabled",
       "semanticCommitType": "feat!",
       "semanticCommitScope": null
