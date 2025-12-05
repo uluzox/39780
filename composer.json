@@ -1,0 +1,7 @@
+{
+  "name": "uluzox/39780",
+  "require": {
+    "b13/container": "2.2.5",
+    "derhansen/form_crshield": "1.3.1"
+  }
+}

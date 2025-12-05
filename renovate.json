@@ -1,1 +1,27 @@
-{}
+{
+  "extends": [
+    "config:best-practices",
+    "customManagers:dockerfileVersions"
+  ],
+  "separateMultipleMajor": true,
+  "packageRules": [
+    {
+      "matchManagers": [
+        "dockerfile",
+        "composer"
+      ],
+      "matchDatasources": [
+        "docker",
+        "packagist"
+      ],
+      "groupName": "ITZBund Major Update",
+      "matchUpdateTypes": [
+        "major"
+      ],
+      "separateMultipleMajor": false,
+      "semanticCommits": "enabled",
+      "semanticCommitType": "feat!",
+      "semanticCommitScope": null
+    }
+  ]
+}
