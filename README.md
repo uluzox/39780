@@ -4,19 +4,35 @@ Reproduction for [Renovate issue 39780](https://github.com/renovatebot/renovate/
 
 ## Current behavior
 
-Renovate removes comments from `jobs.jobname.steps.uses`, even when commit hash pinning is disabled.
+Renovate creates a combined pull request for major versions of different packages
+and datasources witht the following package rule. However, `renovate-config-validator --strict`
+fails with 
 
-```yaml
-jobs:
-  build:
-    runs-on: ubuntu-latest
+> cannot combine both matchUpdateTypes and separateMultipleMajor
 
-    steps:
-      - uses: actions/checkout@v1 # Comment that Renovate bot will remove later on
-
-      - name: Run a one-line script
-        run: echo Hello, world!
+```json
+{
+  "matchManagers": [
+    "dockerfile",
+    "composer"
+  ],
+  "matchDatasources": [
+    "docker",
+    "packagist"
+  ],
+  "groupName": "ITZBund Major Update",
+  "matchUpdateTypes": [
+    "major"
+  ],
+  "separateMultipleMajor": false,
+  "semanticCommits": "enabled",
+  "semanticCommitType": "feat!",
+  "semanticCommitScope": null
+}
 ```
+
+On the other hand, removing `separateMultipleMajor` from the above package rule
+leads to a merge request for each renovated package's major version.
 
 ## Expected behavior
 

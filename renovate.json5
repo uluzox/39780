@@ -3,6 +3,10 @@
     "config:best-practices",
     "customManagers:dockerfileVersions"
   ],
+  "enabledManagers": [
+    "composer",
+    "dockerfile"
+  ],
   "separateMultipleMajor": true,
   "packageRules": [
     {
@@ -18,7 +22,7 @@
       "matchUpdateTypes": [
         "major"
       ],
-      "separateMultipleMajor": false,
+      // "separateMultipleMajor": false,
       "semanticCommits": "enabled",
       "semanticCommitType": "feat!",
       "semanticCommitScope": null
